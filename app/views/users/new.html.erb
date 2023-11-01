@@ -1,4 +1,14 @@
 <h1>Xをはじめましょう</h1>
+<% if @user&.errors&.any? %>
+    <div class="error_messages">
+        <% @user.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+        <% end %>
+    </div>
+<% end %>
+
+
+
 <%= form_tag users_path, method: :post, data: { turbo:false } do %>
     <%= label_tag :uid, 'ユーザーID' %>
     <%= text_field_tag :uid %></br></br>

@@ -21,16 +21,16 @@
         <%=link_to 'Repost', "/",class: "action-link" %>
         <%=link_to 'View', "/",class: "action-link" %>
         <% if session[:login_uid] %>
-            <%= form_with url: likes_path, method: :post do |form| %>
-              <%= form.hidden_field :tweet_id, value: e.id %>
-              <%= form.submit 'いいね' %>
-            <% end %>
-
-            
             <% like = e.likes.find_by(user_id: User.find_by(uid: session[:login_uid]).id) %>
+            
             <% if like %>
                 <%= form_with url: like_path(like), method: :delete do |form| %>
-                    <%= form.submit 'いいね削除' %>
+                    <%= image_submit_tag 'push_heart.png' %><%= e.likes.count %>
+                <% end %>
+            <% else %>
+                <%= form_with url: likes_path, method: :post do |form| %>
+                    <%= form.hidden_field :tweet_id, value: e.id %>
+                    <%= image_submit_tag 'heart.png' %><%= e.likes.count %>
                 <% end %>
             <% end %>
         <% end %>
@@ -45,7 +45,9 @@
 
 
 <% end %>
-<%= link_to "ログアウト", top_logout_path %>
+<% if session[:login_uid] %>
+    <%= link_to "ログアウト", top_logout_path %>
+<% end %>
 
 
 
