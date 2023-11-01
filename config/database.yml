@@ -25,7 +25,7 @@ production:
   adopter: postgresql
   encoding: unicode
   pool: 5
-  database: test_render_i4fu
-  username: test_render_i4fu_user
+  database: l5_ypiq
+  username: l5_ypiq_user
   password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
   url: <%= ENV['DATABASE_URL'] %>
