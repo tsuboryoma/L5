@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L5</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="container">
+      
+      <% if session[:login_uid] %>
+        <div id="header">
+          <%= render "header" %>
+        </div>
+        
+        <div id="sidebar">
+          <%= render "sidebar" %>
+        </div>
+      <% end %>
+      
+      <div id="content">
+        <%= yield %>
+      </div>
+      
+    </div>
+  </body>
+</html>

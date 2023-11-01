@@ -1,0 +1,10 @@
+<h1>Xにログイン</h1>
+<%= form_tag top_login_path, method: :post, data: { turbo:false } do %>
+    <%= label_tag :uid, 'ユーザーID' %>
+    <%= text_field_tag :uid %></br></br>
+    <%= label_tag :pass, 'パスワード' %>
+    <%= password_field_tag :pass %></br></br>
+    <%= submit_tag 'ログイン', class: "submit-btn" %>
+<% end %></br></br>
+
+<p>アカウントをお持ちでない場合は<%= link_to "登録", new_user_path%></p>

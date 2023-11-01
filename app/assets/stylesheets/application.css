@@ -1,0 +1,126 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ 
+ #container{
+    width:1000px;
+    margin: 0 auto;
+}
+#sidebar{
+    float: left;
+    width:200px;
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    position: sticky;
+}
+
+#header{
+    width:600px;
+    float: right;
+    margin:20px 50px 20px 100px;
+    
+}
+
+#content{
+    width:600px;
+    float: right;
+    
+    
+}
+
+ 
+ .submit-btn {
+    padding:10px 70px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-weight: bold;
+ }
+ 
+.button-style-signUp {
+    padding:10px 70px;
+    background-color: #3498db;
+    color: #ffffff;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.button-style-signIn {
+    padding:10px 100px;
+    background-color: white;
+    color: #3498db;
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.header_link{
+    text-decoration: none;  /* 下線を削除 */
+    color: black;
+    margin:0px;
+    padding:10px 20px 10px 20px;
+}
+
+.header_link:hover {
+     background-color: #E7E7E8;
+}
+
+.custom-link {
+    padding:10px;
+    color: black;  /* テキストの色を青に設定 */
+    text-decoration: none;  /* 下線を削除 */
+    text-align:center;
+    display: flex;
+    align-items: center; /* 子要素を垂直に中央揃え */
+    border-radius: 40px; /* 角を丸くする */
+}
+
+.custom-link:hover {
+    background-color: #E7E7E8;
+}
+
+.hovered-icon {
+    display: none;
+}
+.custom-link:hover .hovered-icon {
+    display: inline-block;
+}
+.custom-link:hover .default-icon {
+    display: none;
+}
+
+.button-style {
+    display: inline-block;
+    padding: 10px 80px;
+    background-color: #3498db;
+    color: #ffffff;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.button-style:hover {
+    background-color: #2980b9;
+}

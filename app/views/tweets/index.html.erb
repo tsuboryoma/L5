@@ -1,0 +1,51 @@
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+<% end %>
+
+
+</br>
+
+
+<% @tweets.each do |e| %>
+<p>
+    <div class="tweet-box">
+        <%= e.message %>
+        <%= ((Time.current - e.created_at)/60).to_i %>分
+        <%=link_to '削除', "/tweets/#{e.id}", data: { turbo_method: :delete } %>
+        <%=link_to '表示', "/tweets/#{e.id}" %>
+        <%=link_to '編集', "/tweets/#{e.id}/edit" %>
+        
+        </br>
+        
+        <%=link_to 'Reply', "/" ,class: "action-link"%>
+        <%=link_to 'Repost', "/",class: "action-link" %>
+        <%=link_to 'View', "/",class: "action-link" %>
+        <% if session[:login_uid] %>
+            <%= form_with url: likes_path, method: :post do |form| %>
+              <%= form.hidden_field :tweet_id, value: e.id %>
+              <%= form.submit 'いいね' %>
+            <% end %>
+
+            
+            <% like = e.likes.find_by(user_id: User.find_by(uid: session[:login_uid]).id) %>
+            <% if like %>
+                <%= form_with url: like_path(like), method: :delete do |form| %>
+                    <%= form.submit 'いいね削除' %>
+                <% end %>
+            <% end %>
+        <% end %>
+
+
+        
+        
+        
+    </div>
+
+</p>
+
+<%= link_to "ログアウト", top_logout_path %>
+<% end %>
+
+
+
+
