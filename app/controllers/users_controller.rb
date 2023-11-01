@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    if session[:login_uid]
-      
   end
 
   def new
