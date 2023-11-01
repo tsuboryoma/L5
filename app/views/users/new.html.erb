@@ -9,13 +9,27 @@
 
 
 
-<%= form_tag users_path, method: :post, data: { turbo:false } do %>
-    <%= label_tag :uid, 'ユーザーID' %>
-    <%= text_field_tag :uid %></br></br>
-    <%= label_tag :pass, 'パスワード' %>
-    <%= password_field_tag :pass %></br></br>
-    <%= submit_tag '登録',class: "submit-btn" %>
-<% end %></br></br>
+
+
+<%= form_for @user, url: {action: :create} do |f| %>
+    <p>
+        <%= f.label :uid, 'ユーザーID' %>
+        <%= f.text_field :uid %>
+    </p>
+
+    <p>
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password %>
+    </p>
+
+    <p>
+        <%= f.label :password_confirmation, 'パスワード(確認)' %>
+        <%= f.password_field :password_confirmation %>
+    </p>
+
+    <%= f.submit '登録', class: "submit-btn" %>
+<% end %>
+
 
 
 <p>アカウントをお持ちの方は<%= link_to "ログイン", top_main_path%>してください。</p>

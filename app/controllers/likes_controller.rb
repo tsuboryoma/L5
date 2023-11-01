@@ -1,8 +1,12 @@
 class LikesController < ApplicationController
   def create
     tweet = Tweet.find(params[:tweet_id])
-    user = User.find_by(uid: session[:login_uid])
-    user.like_tweets << tweet
+    #user = User.find_by(uid: session[:login_uid])
+    #user.like_tweets << tweet
+    unless tweet.liked?(current_user)
+      tweet.like(current_user)
+    end
+    
     redirect_to tweets_path
   end
   #def destroy
@@ -12,9 +16,10 @@ class LikesController < ApplicationController
   #  redirect_to tweets_path
   #end
   def destroy
-    like = Like.find(params[:id]) # 直接「いいね」をIDで見つけます。
-    like.destroy if like # もし「いいね」が存在すれば削除します。
-
+    tweet = Tweet.find(params[:tweet_id])
+    if tweet.liked?(current_user)
+      tweet.unlike(current_user)
+    end
     redirect_to tweets_path
   end
 end

@@ -6,19 +6,28 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-
+  
   def create
-    if request.post?
-      @user = User.new(uid: params[:uid], pass: params[:pass])
-      if @user.valid?
-        @user.pass = BCrypt::Password.create(params[:pass])
-        @user.save
-        redirect_to top_main_path, notice: '登録が完了しました。ログインしてください位。'
-      else
-        render "new"
-      end
+    @user = User.new(uid: params[:user][:uid], password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])
+    if @user.save
+      redirect_to top_main_path, notice: '登録が完了しました。ログインしてください。'
+    else
+      render 'new'
     end
   end
+  
+  #def create
+  #  if request.post?
+  #    @user = User.new(uid: params[:uid], pass: params[:pass])
+  #    if @user.valid?
+  #      @user.pass = BCrypt::Password.create(params[:pass])
+  #      @user.save
+  #      redirect_to top_main_path, notice: '登録が完了しました。ログインしてください位。'
+  #    else
+  #      render "new"
+  #    end
+  #  end
+  #end
 
   def destroy
     user = User.find(params[:id])

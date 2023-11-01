@@ -1,6 +1,16 @@
 class User < ApplicationRecord
-    has_many :likes, dependent: :destroy
-    has_many :like_tweets, through: :likes, source: :tweet
+    has_many :likes, dependent: :destroy#ユーザを消すといいねも消える
+    has_many :tweets, dependent: :destroy#ユーザを消すとツイートも消える
+    has_many :like_tweets, source: :tweet, through: :likes
     validates :uid, presence: true, uniqueness: true
-    validates :pass, presence: true
+    validates :password, presence: true, confirmation: true
+    
+    attr_accessor :password, :password_confirmation
+    
+    def password=(val)
+        if val.present?
+            self.pass = BCrypt::Password.create(val)
+        end
+        @password = val
+    end
 end
